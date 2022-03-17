@@ -1,0 +1,21 @@
+<mvc:View 
+controllerName="hogent.hogent.controller.Detail" 
+xmlns:mvc="sap.ui.core.mvc" 
+displayBlock="true"
+xmlns="sap.m"
+>
+	<Shell id="shell">
+		<App id="app">
+			<pages>
+            <Page id="detail" title="{i18n>DetailTitle}" showNavButton="true" navButtonPress="handleNavButtonPress" >
+                <VBox id="_IDGenVBox1">
+                    <Text id="_IDGenText1" text="{Carrid}" />
+                    <Text id="_IDGenText2" text="{Connid}" />
+                    <Text id="_IDGenText3" text="{Fldate}" />
+                    <Text id="_IDGenText4" text="{Price}" />
+                </VBox>
+            </Page>
+			</pages>
+		</App>
+	</Shell>
+</mvc:View>

@@ -89,11 +89,18 @@
       },
       "routes": [
         {
-          "name": "RouteApp",
-          "pattern": "RouteApp",
+          "name": "home",
+          "pattern": "",
           "target": [
-            "TargetApp"
+            "TargetList"
           ]
+        },
+        {
+            "name": "detail",
+            "pattern": "flightSet/{Carrid}/{Connid}/{Fldate}",
+            "target": [
+                "TargetDetail"
+            ]
         }
       ],
       "targets": {
@@ -103,6 +110,20 @@
           "clearControlAggregation": false,
           "viewId": "App",
           "viewName": "App"
+        },
+        "TargetList": {
+            "viewType": "XML",
+            "transition": "slide",
+            "clearControlAggregation": false,
+            "viewId": "List",
+            "viewName": "List"
+        },
+        "TargetDetail": {
+            "viewType": "XML",
+            "transition": "slide",
+            "clearControlAggregation": false,
+            "viewId": "Detail",
+            "viewName": "Detail"
         }
       }
     },
