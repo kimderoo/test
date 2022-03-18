@@ -1,21 +1,111 @@
-<mvc:View 
-controllerName="hogent.hogent.controller.Detail" 
-xmlns:mvc="sap.ui.core.mvc" 
-displayBlock="true"
-xmlns="sap.m"
->
-	<Shell id="shell">
-		<App id="app">
-			<pages>
-            <Page id="detail" title="{i18n>DetailTitle}" showNavButton="true" navButtonPress="handleNavButtonPress" >
-                <VBox id="_IDGenVBox1">
-                    <Text id="_IDGenText1" text="{Carrid}" />
-                    <Text id="_IDGenText2" text="{Connid}" />
-                    <Text id="_IDGenText3" text="{Fldate}" />
-                    <Text id="_IDGenText4" text="{Price}" />
-                </VBox>
-            </Page>
-			</pages>
-		</App>
-	</Shell>
+<mvc:View xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    controllerName="hogent.hogent.controller.Detail"
+    displayBlock="true">
+    <Page id="detail"
+        title="{i18n>DetailTitle}"
+        showNavButton="true"
+        navButtonPress="handleNavButtonPress">
+        <content>
+            <VBox xmlns="sap.m"
+                id="_IDGenVBox1">
+                <IconTabBar selectedKey="__filter0"
+                    id="bar0">
+                    <items>
+                        <IconTabFilter text="Flight Data"
+                            icon="sap-icon://flight"
+                            id="filter0">
+                            <content>
+                                <List noDataText="Geen gegevens"
+                                    id="list1">
+                                    <items>
+                                        <StandardListItem title="Airline"
+                                            description="{Carrid}"
+                                            id="item2"/>
+                                        <StandardListItem title="Flight Number"
+                                            description="{Connid}"
+                                            id="item3"/>
+                                        <StandardListItem title="Date"
+                                            description="{
+                                            path : 'Fldate',
+                                            type : 'sap.ui.model.type.Date',
+                                                formatOptions: {
+                                                    style : 'long'
+                                                }
+                                            }"
+                                            id="item4"/>
+
+                                        <StandardListItem id="_IDGenStandardListItem1"
+                                            title="Plane Type"
+                                            description="{Planetype}" />
+                                    </items>
+                                </List>
+                            </content>
+                        </IconTabFilter>
+                        <IconTabFilter text="Flight Expenses"
+                            icon="sap-icon://travel-expense"
+                            iconColor="{= ${Price} > 300 ? 'Negative' : 'Positive'}"
+                            id="filter2">
+
+                            <content>
+                                <Text id="_IDGenText1" text="Current Price: " ></Text>
+                                <ObjectNumber id="_IDGenObjectNumber1"
+                                    number="{
+                                    parts:[{path:'Price'},{path:'Currency'}],
+                                    type: 'sap.ui.model.type.Currency',
+                                    formatOptions: {showMeasure: false}
+                                    }"
+                                    unit="{Currency}"
+                                    state="{= ${Price} > 300 ? 'Error' : 'Success'}"/>
+                            </content>
+                        </IconTabFilter>
+                        <IconTabFilter text="Passengers"
+                            count="{= ${Seatsocc} + ${SeatsoccB} + ${SeatsoccF}}"
+                            icon="sap-icon://company-view"
+                            iconColor="Default"
+                            id="filter1">
+                            <content>
+                                <List id="_IDGenList1"
+                                    noDataText="Geen gegevens"
+                                    headerText="Economy"
+                                    >
+                                    <items>
+                                        <StandardListItem id="_IDGenStandardListItem2"
+                                            title="Max. capacity econ"
+                                            description="{Seatsmax}" />
+                                        <StandardListItem id="_IDGenStandardListItem3" title="Occupied econ"
+                                            description="{Seatsocc}" />
+                                    </items>
+                                </List>
+                                
+                                <List id="_IDGenList2" 
+                                    noDataText="Geen gegevens"
+                                    headerText="Business">
+                                    <items>
+                                        <StandardListItem id="_IDGenStandardListItem4"
+                                            title="Max. capacity bus."
+                                            description="{SeatsmaxB}" />
+                                        <StandardListItem id="_IDGenStandardListItem5" title="Occupied bus."
+                                            description="{SeatsoccB}" />
+                                    </items>
+                                </List>
+                                
+                                <List id="_IDGenList3"  
+                                    noDataText="Geen gegevens"
+                                    headerText="Business">
+                                    <items>
+                                        <StandardListItem id="_IDGenStandardListItem6" 
+                                            title="Max. capacity 1st"
+                                            description="{SeatsmaxF}" />
+                                        <StandardListItem id="_IDGenStandardListItem7" title="Occupied 1st"
+                                            description="{SeatsoccF}" />
+                                    </items>
+                                </List>
+                            </content>
+                        </IconTabFilter>
+                    </items>
+                </IconTabBar>
+            </VBox>
+        </content>
+    </Page>
 </mvc:View>

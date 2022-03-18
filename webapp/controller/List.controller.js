@@ -1,12 +1,14 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "sap/ui/model/json/JSONModel",
-    "sap/m/MessageBox"
+    "sap/m/MessageBox",
+    "sap/ui/model/Filter",
+    "sap/ui/model/FilterOperator"
 ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-    function (Controller, JSONModel, MessageBox) {
+    function (Controller, JSONModel, MessageBox, Filter, FilterOperator) {
         "use strict";
 
         return Controller.extend("hogent.hogent.controller.List", {
@@ -43,6 +45,24 @@ sap.ui.define([
                     Connid: selectedConnid,
                     Fldate: selectedFldate
                 });
-            }
+            },
+
+            handleSearch: function (evt) {
+                // create model filter
+                var filters = [];
+                var query = evt.getParameter("query");
+                if (query && query.length > 0) {
+                    filters.push(new Filter({
+                        path: "Connid",
+                        operator: FilterOperator.EQ,
+                        value1: query
+                    }));
+                }
+    
+                // update list binding
+                var table = this.getView().byId("idFlightsTable");
+                var binding = table.getBinding("items");
+                binding.filter(filters);
+            },
         });
     });
