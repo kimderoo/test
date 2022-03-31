@@ -19,6 +19,15 @@
           "localUri": "localService/metadata.xml",
           "odataVersion": "2.0"
         }
+      },
+      "mainService2": {
+        "uri": "/sap/opu/odata/sap/ZC_TCHR_GAMES_SH_CDS/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "localUri": "localService/metadata.xml",
+          "odataVersion": "2.0"
+        }
       }
     }
   },
@@ -66,6 +75,11 @@
       },
       "": {
         "dataSource": "mainService",
+        "preload": true,
+        "settings": {"useBatch": false}
+      },
+      "games": {
+        "dataSource": "mainService2",
         "preload": true,
         "settings": {"useBatch": false}
       }

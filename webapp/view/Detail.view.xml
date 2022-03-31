@@ -1,5 +1,7 @@
 <mvc:View xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
+    xmlns:layout="sap.ui.layout"
+    xmlns:form="sap.ui.layout.form"
     controllerName="hogent.hogent.controller.Detail"
     displayBlock="true">
     <Page id="detail"
@@ -48,7 +50,8 @@
                             id="filter2">
 
                             <content>
-                                <Text id="_IDGenText1" text="Current Price: " ></Text>
+                                <Text id="_IDGenText1"
+                                    text="Current Price: "></Text>
                                 <ObjectNumber id="_IDGenObjectNumber1"
                                     number="{
                                     parts:[{path:'Price'},{path:'Currency'}],
@@ -59,6 +62,7 @@
                                     state="{= ${Price} > 300 ? 'Error' : 'Success'}"/>
                             </content>
                         </IconTabFilter>
+
                         <IconTabFilter text="Passengers"
                             count="{= ${Seatsocc} + ${SeatsoccB} + ${SeatsoccF}}"
                             icon="sap-icon://company-view"
@@ -67,40 +71,69 @@
                             <content>
                                 <List id="_IDGenList1"
                                     noDataText="Geen gegevens"
-                                    headerText="Economy"
-                                    >
+                                    headerText="Economy">
                                     <items>
                                         <StandardListItem id="_IDGenStandardListItem2"
                                             title="Max. capacity econ"
                                             description="{Seatsmax}" />
-                                        <StandardListItem id="_IDGenStandardListItem3" title="Occupied econ"
+                                        <StandardListItem id="_IDGenStandardListItem3"
+                                            title="Occupied econ"
                                             description="{Seatsocc}" />
                                     </items>
                                 </List>
-                                
-                                <List id="_IDGenList2" 
+
+                                <List id="_IDGenList2"
                                     noDataText="Geen gegevens"
                                     headerText="Business">
                                     <items>
                                         <StandardListItem id="_IDGenStandardListItem4"
                                             title="Max. capacity bus."
                                             description="{SeatsmaxB}" />
-                                        <StandardListItem id="_IDGenStandardListItem5" title="Occupied bus."
+                                        <StandardListItem id="_IDGenStandardListItem5"
+                                            title="Occupied bus."
                                             description="{SeatsoccB}" />
                                     </items>
                                 </List>
-                                
-                                <List id="_IDGenList3"  
+
+                                <List id="_IDGenList3"
                                     noDataText="Geen gegevens"
                                     headerText="Business">
                                     <items>
-                                        <StandardListItem id="_IDGenStandardListItem6" 
+                                        <StandardListItem id="_IDGenStandardListItem6"
                                             title="Max. capacity 1st"
                                             description="{SeatsmaxF}" />
-                                        <StandardListItem id="_IDGenStandardListItem7" title="Occupied 1st"
+                                        <StandardListItem id="_IDGenStandardListItem7"
+                                            title="Occupied 1st"
                                             description="{SeatsoccF}" />
                                     </items>
                                 </List>
+                            </content>
+                        </IconTabFilter>
+
+                        <IconTabFilter text="Games"
+                            icon="sap-icon://sys-monitor"
+                            iconColor="Contrast"
+                            id="_IDGenIconTabFilter1">
+
+                            <content>
+                                <form:SimpleForm id="_IDGenSimpleForm1"
+                                    editable="true"
+                                    layout="ResponsiveGridLayout"
+                                    labelSpanM="12"
+                                    labelSpanL="12"
+                                    labelSpanXL="12"
+                                    emptySpanL="6"
+                                    emptySpanM="6">
+                                    <form:content>
+                                        <Label id="_IDGenLabel1"
+                                            text="Games To Play on a plane"
+                                            labelFor="multiInput"/>
+                                        <MultiInput id="multiInput"
+                                            valueHelpOnly="true"
+                                            valueHelpRequest=".onValueHelpRequested">
+                                        </MultiInput>
+                                    </form:content>
+                                </form:SimpleForm>
                             </content>
                         </IconTabFilter>
                     </items>
