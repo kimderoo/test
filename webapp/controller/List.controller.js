@@ -50,13 +50,10 @@ sap.ui.define([
             handleSearch: function (evt) {
                 // create model filter
                 var filters = [];
-                var query = evt.getParameter("query");
+                var query = evt.getSource().getValue();
                 if (query && query.length > 0) {
-                    filters.push(new Filter({
-                        path: "Connid",
-                        operator: FilterOperator.EQ,
-                        value1: query
-                    }));
+                    var filter = new Filter("Connid", FilterOperator.EQ, query);
+                    filters.push(filter);
                 }
     
                 // update list binding
